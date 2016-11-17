@@ -1,0 +1,33 @@
+Inserting 5
+Inserting 3
+Inserting 6
+Inserting 11
+Inserting -5
+Inserting -2
+Inserting 15
+Inserting 4
+Inserting 4
+Inserting 9
+Inserting 14
+Inserting 8
+
+                _______________5*______________
+               /                              \
+        _______3*______                         6*______
+       /              \                               \
+      -5*__             4*                            __11*__
+          \                                        /      \
+          -2*                                      _9*      15*
+                                                 /       /
+                                                 8*      14*
+Removing 11.
+
+                _______________5*______________
+               /                              \
+        _______3*______                         6*______
+       /              \                               \
+      -5*__             4*                            __11__
+          \                                        /      \
+          -2*                                      _9*      15*
+                                                 /       /
+                                                 8*      14*

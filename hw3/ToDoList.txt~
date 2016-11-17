@@ -1,0 +1,16 @@
+
+List for IsisCourse HW
+
+
+
+
+Already Done:
+	>Set.h and Set.cpp
+	>Queue.h
+	>IsisCourse.h
+
+TODO:
+	>Queue.cpp
+	>IsisCourse.cpp
+	>Main.cpp
+	>Valgrind

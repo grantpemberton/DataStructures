@@ -1,0 +1,42 @@
+//
+//Song.cpp
+//
+
+
+#include "Song.h"
+#include <vector>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+Song::Song(){
+	lyric_count = 0;
+	artist = "";
+	title = "";
+}
+
+Song::~Song(){
+	//do we need this???
+}
+
+int Song::find_lyric(string word){
+//finds how many times the word appears in the song
+	
+	int frequency = 0;
+	
+	for (int i = 0; i < lyrics.size(); i++){//use size of vector
+		if (lyrics[i] == word){
+			frequency++;
+		}
+	}
+	
+	return frequency;
+}
+	
+	
+	
+	
+	
+	
+	

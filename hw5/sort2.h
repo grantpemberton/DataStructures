@@ -1,0 +1,40 @@
+//
+//  InsertionSort.h
+//  Header File for SelectionSort class
+//
+
+#ifndef __Sorting__InsertionSort__
+#define __Sorting__InsertionSort__
+
+#include <iostream>
+
+struct arrayWithLength{
+        int length;
+        int *arr;
+};
+
+class InsertionSort {
+public:
+        InsertionSort(); // constructor
+        
+        // read in a list of values from stdin
+        void readList();
+        
+        // sort function
+        void sort();
+	
+	//added for recursive isort for comp 160
+	//added 1/30/2015
+	void rsort(int start);
+        
+        // print the array
+        void printArray();
+        
+private:
+        arrayWithLength sortArray;
+	
+	void swap(int index1, int index2);
+};
+
+#endif /* defined(__Sorting__InsertionSort__) */
+

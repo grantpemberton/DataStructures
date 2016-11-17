@@ -1,0 +1,79 @@
+# ReadMe for COMP 15 HW2 
+## Linked Lists
+Grant Pemberton
+
+
+The purpose of your program:
+
+The Purpose of the program was to model a deck of cards using linked 
+lists as the data structure
+
+List of files with one/or two-line summary:
+
+Card.h This header file defines the class Card and lists its public 
+functions such as the constructor and destructor, along with its private
+variables such as its suit and rank.
+
+Cards.cpp: This is the implementation file for Cards.H. It contains the 
+code used that allow the functions to do what is described in the 
+Cards.H file.
+
+Hand.H: This is the header file that defines the class Hand and lists 
+its public functions such as add_card and print_hand. It also contains 
+a private variable of the type List_linked_list.
+
+Hand.cpp: This is the implementation of the Hand.H file.
+
+List_linked_list.H: This is the header file that defines the 
+class List_linked_list and the strcut Card_node.
+This file contains private variables such as a pointer to a Card_Node
+and public functions with in the List_linked_list class.
+
+List_linked_list.cpp: This is the implementation of the 
+List_linked_list.H file. 
+
+Main: this file contains the code that allows users to input their 
+desired values for the cards they want in their deck
+
+How to compile:
+
+   The code may be compiled using the included Makefile.
+
+Outline of data structure:
+
+The data structure used for this assignment was a linked list. Each node
+within the linked list contained a card and a pointer to the next node
+in the list. By using this data structure, the deck of cards was being 
+modled by the entire linked list. 
+
+
+Functions Used by List_linked_list: 
+
+List_linked_list();  constructor
+~List_linked_list(); destructor 
+
+// copy constructor
+List_linked_list(const List_linked_list& source);
+// operator= overload
+List_linked_list operator =(const List_linked_list& source);
+
+void print_list();
+void print_list_int();
+bool is_empty() { return head==NULL; }
+
+int cards_in_hand();  returns the number of cards in the hand
+void make_empty();  empties the list; head should equal NULL
+
+void insert_at_head(Card c); inserts a card at the head 
+void insert_at_tail(Card c); inserts a card at the tail
+void insert_at_index(Card c, int index); inserts a card at the given
+index
+void replace_at_index(Card c, int index);replaces the card at the given
+index
+Card card_at(int index); determins the card at the index
+bool has_card(Card c); determins if the card is in the list
+bool remove(Card c); finds the card and removes it
+Card remove_from_head(); removes the card from the head 
+Card remove_from_tail(); removes the card from the tail
+Card remove_from_index(int index);removes the card from the index
+

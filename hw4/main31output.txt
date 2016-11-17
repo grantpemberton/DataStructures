@@ -1,0 +1,27 @@
+Inserting 5
+Inserting 3
+Inserting 6
+Inserting 11
+
+    ___5__
+   /      \
+   3       6
+            \
+            11
+
+    ___5__
+   /      \
+   3       6
+            \
+            11
+Removing 5 from bst, but not bst2.
+
+  _6
+ /  \
+ 3  11
+
+    ___5__
+   /      \
+   3       6
+            \
+            11

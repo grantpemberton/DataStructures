@@ -1,0 +1,30 @@
+/*
+ * main.cpp
+ *
+ */
+#include "WordList.h"
+using namespace std;
+
+int main(int argc, char *argv[])
+{
+	string filename;
+	WordList wordlist;
+cerr << "1" << endl;
+	if (argc == 2) { // if there is a filename on the command line
+		wordlist.read_lyrics(argv[1],true);
+	}
+	else { // use a pre-defined filename
+		cerr << "2" << endl;
+		filename = "rick_db.txt";
+		//filename = "lyrics_fulldb.txt";
+	        cerr << "3" << endl;
+		wordlist.read_lyrics(filename.c_str(),true);
+		cerr << "4" << endl;
+	}
+	
+	cerr << "5" << endl;
+	
+        wordlist.search();
+
+        return 0;
+}

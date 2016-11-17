@@ -1,0 +1,19 @@
+
+List for IsisCourse HW
+
+
+
+
+Already Done:
+	>Set.h and Set.cpp
+	>Queue.h
+	>IsisCourse.h
+
+TODO:
+	>Queue.cpp
+	>IsisCourse.cpp
+		print
+		drop
+		update_enrollment
+	>Main.cpp
+	>Valgrind

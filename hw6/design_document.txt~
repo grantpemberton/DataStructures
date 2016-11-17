@@ -1,0 +1,21 @@
+//Design Document Written by Grant Pemberton 11/20/2014
+
+Each lyric word is going to be stored in a hash table. The key associated with 
+that word will be able to be hashed to the table index for which that word is 
+held. Each index of the hash table of words will contain a word struct. The
+word struct is as follows:
+
+struct Lyric{
+	priorityQueue *songList [11];
+	string word;
+	int key;
+};
+
+each member in the priorityQueue, songList is going to be another struct:
+
+struct lyricFreq{
+	string word;
+	Song identity;
+};
+
+

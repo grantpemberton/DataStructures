@@ -1,0 +1,87 @@
+# ReadMe for COMP 15 HW5
+## Sorting Assignment 
+//Written By Grant Pemberton
+
+Purpose:
+	This program is meant to read in a number of integers and 
+	then sort that list into an ordered list from low to high
+
+List of Files:
+-SelectionSort.h
+	lists the functions associated with the SelectionSort class.
+-SelectionSort.cpp
+	implementation of the SelectionSort, this file details the functions
+	used in selection sort, and its "sort" code is based off of the 
+	SelectionSort algorithm
+-main1.cpp
+	how the SelectionSort runs. This code utilizes the member functions
+	of the SelectionSort class, reads in the numbers, and then sorts 
+	those numbers based on their relationships to other numbers in the list
+-Sort2.h
+	lists the functions associated with the InsertionSort class.
+-Sort2.cpp
+	implementation of the InsertionSort, this file details the functions
+	used in insertion sort, and its "sort" code is based off of the 
+	InsertionSort algorithm
+-main2.cpp
+	how the InsertionSort runs. This code utilizes the member functions
+	of the InsertionSort class, reads in the numbers, and then sorts 
+	those numbers based on their relationships to other numbers in the list
+-Sort3.h
+	lists the functions associated with the ShellSort class.
+-Sort3.cpp
+	implementation of the ShellSort, this file details the functions
+	used in shell sort, and its "sort" code is based off of the 
+	ShellSort algorithm
+-main3.cpp
+	how the ShellSort runs. This code utilizes the member functions
+	of the ShellSort class, reads in the numbers, and then sorts 
+	those numbers based on their relationships to other numbers in the list
+
+Compiling Instructions:
+	Use the included Makefile to compile. The command: "make SelectionSort"
+	will make the SelectionSort executable, "make sort2" will make the 
+	InsertionSort executable, and "make sort3" will make the ShellSort
+	executable.
+
+Data Structure:
+	Dynamic array
+
+Algorithm:
+
+SelectionSort
+	//1) start at beginning of array and claim that it is the min
+	//   (this is implemented in the outer loop)
+	//2) traverse the array and compare it to the value of the claimed min
+	//   (this is implemented in the inner loop)
+	//3) if the value in the new index is less than the claimed min, then 
+	//   that value becomes the new claimed min
+	//4) at the end of the inner loop if the minIndex was changed, then
+	//   swap the new min with the index of the first claimed min
+InsertionSort
+	//1) for each index in the array, look at that index and its previous
+	//   index
+	//2) compare the value of the index to the value of the previous index
+	//3) if the value of the previous index is larger than the value of the
+	//   index, then swap the two
+	//4) repeat this process now starting at that previous index
+ShellSort
+	//1) determine the appropriate gap size to sort the array based on the
+	//   number of elements in the array
+	//2) perform an insertion sort for each gapped array for each gap size
+	//   used until the gap is equal to 1. When the gap is equal to 1, the 
+	//   array is nearly sorted, and InsertionSort is good at sorting
+	//   nearly sorted arrays
+Extra Help:
+	Both Hibbard and Ciura gap arrays were researched on the ShellSort
+	wikipedia page.
+
+Notes:
+	>The shell sort uses a hybrid gap size depending on how large the input
+	 array is. This will lead to strange asymptotic behavior. In my
+	 with whoever grades this, we can look closer into why I coded this 
+	 sort the way that I did
+	
+	>Thanks for reading!
+
+

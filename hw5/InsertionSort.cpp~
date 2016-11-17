@@ -1,0 +1,78 @@
+//
+//  InsertionSort.cpp
+//  Sorts integers using the InsertionSort algorithm
+
+
+#include "InsertionSort.h"
+
+using namespace std;
+
+InsertionSort::InsertionSort(){ // constructor
+        sortArray.length = 0;
+        sortArray.arr = NULL;
+}
+
+// reads in a list of integers from stdin and returns an arrayWithLength
+void InsertionSort::readList(){
+        int currentCapacity = 10;
+        sortArray.arr = new int[currentCapacity];
+        
+        while (cin >> sortArray.arr[sortArray.length]) {
+                ++sortArray.length;
+                if (sortArray.length==currentCapacity) {
+                        int *temp = new int[currentCapacity*2];
+                        for (int i=0;i<currentCapacity;i++) {
+                                temp[i] = sortArray.arr[i];
+                        }
+                        delete [] sortArray.arr;
+                        sortArray.arr = temp;
+                        currentCapacity *= 2;
+                }
+        }
+}
+
+void InsertionSort::sort(){
+        // Insertion sort on sortArray
+
+	for (int i = 1; i < sortArray.length; i++){//loop through array
+		int j = i;
+		while (j > 0 && sortArray.arr[j-1] > sortArray[j]){
+			swap(j, (j-1));
+		j -= 1;
+		}
+	}
+}
+////////////////////////////////////////////////////////////////
+/*	
+	int temp;
+	//temporary value for an array of ints
+	int minIndex;
+	//keeps track of the index of the minimum valued element
+	for (int i = 0; i < sortArray.length; i++){
+		minIndex = i;//loop through the sortArray
+		for (int j = i+1; j < sortArray.length; j++){
+		//begin search at the index 1 after i
+			if (sortArray.arr[j] < sortArray.arr[minIndex]){
+			//if there is a smaller value after index i
+				minIndex = j;
+				//j is the index that has the smallest value
+			}
+		}
+		if (minIndex != i){
+			temp = sortArray.arr[i];
+			sortArray.arr[i] = sortArray.arr[minIndex];
+			sortArray.arr[minIndex] = temp;
+		}
+	}
+}
+*/
+////////////////////////////////////////////////////////////////
+void InsertionSort::printArray(){
+        // prints out the integers in sorted order
+	
+	for (int i = 0; i < sortArray.length; i++){
+		cout << sortArray.arr[i] << " ";
+	}
+}
+
+

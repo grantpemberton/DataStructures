@@ -1,0 +1,370 @@
+//
+//	Written by: Grant Pemberton 
+//	Date: 9/6/2014
+//
+//
+#include "List_dynamic_array.h"
+
+#include <iostream>
+#include <cassert>
+
+using namespace std;
+
+List_dynamic_array::List_dynamic_array()
+// constructor: creates a cards array that is empty
+{
+
+    cards = new Card[INITIAL_CAPACITY];
+    // create a list of Cards with space for INITIAL_CAPACITY# of cards
+
+    //update state variables:
+    hand_capacity = INITIAL_CAPACITY;
+    cards_held = 0;
+
+}
+
+List_dynamic_array::~List_dynamic_array()
+// destructor -> 
+{
+
+
+    delete [] cards;
+    // delete the information in the array
+    cards = NULL;
+    // repoint the cards pointer
+
+}
+
+// copy constructor
+List_dynamic_array::List_dynamic_array(const List_dynamic_array& source) {
+	// explicit copy constructor necessary because of cards array
+	cards_held = source.cards_held;
+	hand_capacity = source.hand_capacity;
+
+	cards = new Card[hand_capacity];
+	for (int i=0;i<cards_held;i++) {
+		cards[i] = source.cards[i];
+	}
+}
+
+// operator= overload
+List_dynamic_array List_dynamic_array::operator =(const List_dynamic_array&
+		source) {
+	// explicit operator= overload necessary because of cards array
+	Card *new_cards;
+
+	// check for self-assignment -- return without doing anything
+	if (this == &source) {
+		return *this;
+	}
+
+	hand_capacity = source.hand_capacity;
+	cards_held = source.cards_held;
+	new_cards = new Card[hand_capacity];
+	for (int i=0;i<hand_capacity;i++) {
+		new_cards[i]=source.cards[i];
+	}
+	delete [ ] cards;
+	cards = new_cards;
+	return *this;
+}
+
+void List_dynamic_array::print_list()
+{
+	for(int i=0; i<cards_held; i++) {
+		cards[i].print_card();
+		if (i != cards_held-1) {
+			cout << ",";
+		} else {
+			cout << "\n";
+		}
+	}
+}
+
+void List_dynamic_array::print_list_int()
+{
+	for(int i=0; i<cards_held; i++) {
+		cards[i].print_card_int();
+		if (i != cards_held-1) {
+			cout << ", ";
+		} else {
+			cout << "\n";
+		}
+	}
+}
+
+void List_dynamic_array::insert_at_head(Card c)
+// insert a card to the beginning of the list 
+{
+
+
+    if (cards_held == hand_capacity){
+	expand();
+    }
+    // check if we need to expand, and expand if necessary
+
+    for (int i = cards_held; i > 0; i--){
+	cards[i] = cards[i-1];
+    }
+    // move all items over one, starting from the last one
+
+
+    cards[0].set_suit(c.get_suit());
+    cards[0].set_rank(c.get_rank());
+    // insert the new card
+
+/*////////////////////////////////////////////
+
+    cards[0] = c;
+    // insert the new card
+    //or
+    replace_at_index(c, 0);
+    // insert the new card
+
+/////////////////////////////////////////////
+*/
+
+    cards_held++;
+    // update cards_held
+}
+
+void List_dynamic_array::insert_at_tail(Card c)
+// add a card to the end of the list
+{
+
+    // check if we need to expand, and expand if necessary
+    if (cards_held == hand_capacity){
+	expand();
+    }
+
+    // insert the new card at the end
+    cards[cards_held].set_suit(c.get_suit());
+    cards[cards_held].set_rank(c.get_rank());
+    //use cards_held as the index because it is equal to 1+ the number of
+    //indicies in the array
+
+
+    cards_held++;
+    // update cards_held
+
+}
+
+void List_dynamic_array::insert_at_index(Card c,int index)
+// insert a card in the list at a specified index
+{
+	// if index is greater than cards_held, then fail
+	assert(index <= cards_held);
+
+
+
+    // check if we need to expand, and expand if necessary
+    if (cards_held == hand_capacity){
+	expand();
+    }
+	
+    for (int i = cards_held; i > index; i --){
+	cards[i] = cards[i-1];
+    }
+    // move all elements past the insertion point up one 	
+    // i.e. make room for the new card
+
+///*
+    cards[index].set_suit(c.get_suit());
+    cards[index].set_rank(c.get_rank());
+    //or:
+//*/
+//    replace_at_index(c, index);
+    // insert the new card
+
+
+    cards_held ++;
+    //update cards_held
+}
+
+void List_dynamic_array::replace_at_index(Card c, int index) 
+//replaces the card at [index] with the input card
+{
+
+//########something is wrong with this
+	// if index is greater than cards_held-1, then fail
+
+	assert(index < cards_held);
+	// if index is greater than cards_held, then fail
+//	cerr<< index<< "index" << endl;
+//	cerr<< cards_held << "cards held" << endl;
+
+
+ 	
+
+
+
+
+	cards[index].set_suit(c.get_suit());
+	cards[index].set_rank(c.get_rank());
+	// replace traits of the card at [index] with traits of c
+
+/*
+//could we use this instead?
+{
+	cards[index] = c;
+	//replace card at [index] with c
+}
+*/
+}
+
+
+
+
+Card List_dynamic_array::card_at(int index)
+// return the card at index
+{
+	// if index is out of bounds, fail
+	assert (index >= 0 && index < cards_held);
+
+
+	return cards[index];
+}
+
+bool List_dynamic_array::has_card(Card c)
+// Returns true if the card is in the hand, false otherwise
+{
+
+
+	
+    for (int i = 0; i < cards_held; i++){
+    // loop through the cards and use the same_card() method from card.cpp
+	if (cards[i].same_card(c)){
+	    return true;
+	    // returns true if card is in hand
+	}
+    }
+	return false;
+	// returns false if card isn't in hand
+}
+
+bool List_dynamic_array::remove(Card c)
+// removes a specified card
+{
+
+
+    // find the card and remove from the hand
+    for (int i = 0; i < cards_held; i++){
+	if (cards[i].same_card(c)){
+	    remove_from_index(i);
+	    return true;
+	    // Returns true if the card was found and removed
+	}
+    }
+    return false;
+    // returns false if card is not removed
+}
+
+Card List_dynamic_array::remove_from_head()
+// remove the card at the head, and move all the other cards back one spot
+
+{
+	// if the list is empty, fail
+	assert(cards_held > 0);
+
+
+
+	Card temp = cards[0];
+	//create a temporary card to return
+
+	for (int i = 0; i < (cards_held-1); i ++){
+	    cards[i] = cards[i+1];
+	}
+	//loop through entire array replacing a card with the next card
+
+	cards_held--;
+	//update cards_held
+
+	return temp;
+        // Returns the card that was removed
+}
+
+/* another way to do this, but it's pretty lazy and it doesn't allow
+// remove_from_index() to build on this concept
+{
+	Card temp = cards[0];
+	remove_from_index(0);
+	return temp;
+}
+*/
+
+Card List_dynamic_array::remove_from_tail()
+// removes the card that is at the tail, and returns it
+{
+	// if the list is empty, fail
+	assert(cards_held > 0);
+
+
+
+	Card temp = cards[(cards_held - 1)];
+	//create a temporary card to return
+	cards_held--;
+	//update cards_held
+
+	return temp;
+}
+
+Card List_dynamic_array::remove_from_index(int index)
+// removes a card from the list at a specified index  <- woah, text lineup!
+{
+
+	// if the list is empty, fail
+	assert(cards_held > 0);
+	
+	// if loc is outside of bounds, fail
+	assert(index >= 0 && index < cards_held);
+
+
+
+	Card temp = cards[index];
+
+	for (int i = index; i < (cards_held-1); i ++){
+	    cards[i] = cards[i+1];
+	}
+	// similar to remove_from_head(), but
+	// we remove the card at index
+
+	cards_held--;
+	//update cards_held
+
+	return temp;
+        // Returns the card that was removed
+	
+}
+
+void List_dynamic_array::expand()
+// "meat" of the dynamic array, allows us to allocate more memory for our list
+{
+
+
+	// five steps
+
+    //1) create new empty array with double the capacity
+    Card* temp = new Card[(hand_capacity)*2];
+
+/*
+//gives errors
+    if (temp == NULL){
+	return false;
+    }
+*/
+
+    //2) populate new array with copied old array 
+    for (int i = 0; i < cards_held; i++){
+	temp[i] = cards[i];
+    }
+
+    //3) delete the old array :(
+    delete [] cards;
+
+    //4) change the direction that cards points
+    cards = temp;
+
+    //5) update the hand_capacity      <- wow, that is some nice text lineup
+    hand_capacity = hand_capacity*2;
+
+}
